@@ -20,6 +20,16 @@
 % Links
 \usepackage{hyperref}
 
+\usepackage{graphicx}
+
+\newcommand{\note}[1]{%
+  \par\medskip
+  \noindent\textbf{Note:} #1
+  \par\medskip
+}
+
+\setlength{\parindent}{0pt}
+
 \title{Can we send information faster than light?}
 \date{\today}
 
@@ -27,14 +37,74 @@
 
 \maketitle
 
-\section{Intro}
+\note{
+Everything you are about to see is just pure linear algebra. The notation might seem
+unfamiliar, but its nothing fancy. It is all just matrices and vectors.
+}
 
-Look an emoji \emoji{➡️} \emoji{😄}
+\section{Motivation}
 
-Unicode just works now.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.6\textwidth]{figures/electron-positron.png}
+  \caption{An entangled electron-positron pair gets created and they are being sent in
+           opposite directions to planet A and B respectively}
+\end{figure}
+
+Look I added an emoji \emoji{😄}. Anyways, let's say we have an entangled pair of particles,
+for example an electron and a positron whose spins are entangled. Alice receives the electron
+on planet A and Bob receives the positron on planet B. If either 'observe' the state of the spin
+of their particle, the other particle will immediately also collapse into some state as prescribed
+by the entangled quantum state. For example, if the overall state was
 
 \[
-i \hbar \pdv{\psi}{t} = -\frac{\hbar^2}{2m} \nabla^2 \psi
+\ket{\psi} = a\ket{01} + b\ket{10}
 \]
+
+(Let $0$ represent the spin down state and $1$ the up state)
+
+we see that there are only two possible states:
+\begin{itemize}
+  \item Either A is in spin down and B is in spin up with probability $\abs{a}^2$
+  \item Or A is in spin up and B is in spin down with probability $\abs{b}^2$
+\end{itemize}
+
+All well and good so far, but here is a catch. Bob does not know it, but Alice has a crush
+on him. Alice is finally ready to invite Bob on a date. There is only one problem, apart
+from the fact that they live on different planets: Clara also likes Bob, and she is currently
+in the same city as Bob. She is also about to drive to Bob to proclaim her admiration for his
+quantum knowledge. Alice knows this for some reason and is devastated. Planet A is 10 lightyears
+away. If she will send a Whatsapp message to Bob now, by the time Bob reads that Alice thinks
+his quantum logic is hot, it will be 10 years lated and he will already have 5 kids with Clara.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.6\textwidth]{figures/clara_admires_bob.png}
+  \caption{Clara admires Bob for his quantum knowldege and Bob likes quantum knowldege}
+\end{figure}
+
+Its late at night and Matteo has made sure the fire is heating the cabin really good. He is expecting
+Alice to come through the door any minute now. He had finally managed to ask her out. And he is
+not wasting any time: if he did not take this seriously he would take her to the movies or some simple
+thing like that. But with Alice he wants to hit the home run right away. And a cabin trip alla Matteo
+is a nuclear weapon in the romantic world. An unrestistable smell of spagetthi carbonara has taken over
+the cabin. Matteo' special secret is to not use the timer for the spagetthi. He has to feeeel the spagetthi
+and only strike it out of the water when he feels deep in his soul that the time is high, just like he
+will do with Alice later that night. While rehearsing his romantic lines in front of an old mirror, he
+could not tell if the twinkles in his eyes actually were a reflection of the hundred candles he lit up
+everywhere or if he is just that excited.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.6\textwidth]{figures/matteo_anticipating.png}
+  \caption{Golly gee can't wait!}
+\end{figure}
+
+Matteo was just about to finish pointing his index fingers towards the mirror anyways as the door
+opened with a sudden crackle followed by a gust of cold winter air finding its way into the room.
+Alice has finally arrived, but to Matteo's horror, she was crying! The carbonara was already long
+cold and the last more stubborn candles were holding on for dear life in an attempt to prolong the night.
+So was Matteo's mood as he was listening to Alice going on and on about Bob and sobbing. Only if she
+could somehow send Bob a message before Clara gets to him and charms him.
 
 \end{document}
