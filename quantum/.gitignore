@@ -1,0 +1,25 @@
+# ======================
+# LaTeX build artifacts
+# ======================
+
+*.aux
+*.log
+*.toc
+*.out
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.bbl
+*.blg
+*.run.xml
+*.bcf
+
+# If you use latexmk build dir
+_build/
+
+# ======================
+# Editor / OS noise
+# ======================
+
+.vscode/
+.DS_Store
