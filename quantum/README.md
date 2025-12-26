@@ -5,4 +5,5 @@ Minimal LaTeX setup for mathematical physics.
 ## Build
 
 ```bash
-latexmk -pdf main.tex
+latexmk -lualatex main.tex
+

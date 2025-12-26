@@ -16,6 +16,7 @@ jobs:
         with:
           root_file: main.tex
           working_directory: quantum
+          latexmk_use_lualatex: true
 
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v4

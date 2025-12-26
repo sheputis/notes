@@ -26,6 +26,7 @@ jobs:
         with:
           root_file: main.tex
           working_directory: quantum
+          latexmk_use_lualatex: true
 
       - name: Prepare Pages site
         run: |

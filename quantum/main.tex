@@ -1,41 +1,40 @@
 \documentclass[11pt,a4paper]{article}
 
-% Encoding & fonts
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage{lmodern}
+% Modern font handling (LuaLaTeX)
+\usepackage{fontspec}
+\setmainfont{Latin Modern Roman}
+
+\newfontfamily\EmojiFont{Noto Emoji} % monochrome (most reliable in PDFs)
+\newcommand{\emoji}[1]{{\EmojiFont #1}}
+
+% Typography
 \usepackage{microtype}
 
 % Math
 \usepackage{amsmath, amssymb, amsthm}
 \usepackage{mathtools}
 
-% Physics helpers (optional but common)
+% Physics helpers
 \usepackage{physics}
 
-% Better references
+% Links
 \usepackage{hyperref}
 
-\title{Notes on Something Physical}
-\author{Your Name}
+\title{Can we send information faster than light?}
 \date{\today}
 
 \begin{document}
 
 \maketitle
 
-\section{Introduction}
+\section{Intro}
 
-We consider the energy--mass relation
-\[
-E = mc^2.
-\]
+Look an emoji \emoji{➡️} \emoji{😄}
 
-The wavefunction $\psi(x,t)$ satisfies
+Unicode just works now.
+
 \[
-i \hbar \pdv{\psi}{t}
-=
-- \frac{\hbar^2}{2m} \nabla^2 \psi.
+i \hbar \pdv{\psi}{t} = -\frac{\hbar^2}{2m} \nabla^2 \psi
 \]
 
 \end{document}
