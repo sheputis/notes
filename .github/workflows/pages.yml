@@ -1,0 +1,66 @@
+name: Build & Publish PDF (GitHub Pages)
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Compile LaTeX (quantum/)
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: main.tex
+          working_directory: quantum
+
+      - name: Prepare Pages site
+        run: |
+          mkdir -p site
+          cp quantum/main.pdf site/main.pdf
+          cat > site/index.html <<'HTML'
+          <!doctype html>
+          <html>
+            <head>
+              <meta charset="utf-8" />
+              <meta name="viewport" content="width=device-width, initial-scale=1" />
+              <title>Quantum PDF</title>
+              <style>
+                html, body { height: 100%; margin: 0; }
+                embed { width: 100%; height: 100%; }
+              </style>
+            </head>
+            <body>
+              <embed src="main.pdf" type="application/pdf" />
+            </body>
+          </html>
+          HTML
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
