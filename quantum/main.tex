@@ -126,6 +126,8 @@ and enjoing the carbonara with him tonight.
 
 \section{The Math}
 
+\subsection{How do we describe a quantum state?}
+
 The electron-positron system lives in a composite Hilbert space
 
 \[
@@ -191,17 +193,25 @@ We substitute the expression for $\rho_{AB}$ from ~\eqref{eq:rho_ab} and we get
 
 \begin{equation}
     \rho_{B} = |a|^2 \ket{1}\bra{1} + |b|^2 \ket{0}\bra{0}
+\label{eq:rho_b}
 \end{equation}
 
-Note: the following paragraph has some ontological problems, take it with a grain of salt, it will be revised.
-So Bob's positron can be in spin up state with probability $|a|^2$ and down state with
+So Bob's positron can be measured to be in spin up state with probability $|a|^2$ and down state with
 probability $|b|^2$. An interesting observation to make is that this is a mixed
-state. Meaning, regarded in isolation on planet B, the positron is still in either  up or down
-state quantum mechanically, but it is still described by a density matrix that would look exactly
-the same if we actually simply did not know what the state is and had a purely statistical description
-that says that it is already in one of the states and here are the probabilities. However the distinction
-has to be made that quantum mechanically the spin is still either up or down, but since it is not locally
-in a superposition, but implicitly in a superposition with the electron on planet B, the reduced matrix
-description encodes in the sense that locally on planet B the measurements on the electron will behave
-as if it is statistically in either state.
+state. Meaning, it is mathematically equivalent to a classical statistical ensemble description: If
+someone prepares a whole set of quantum systems where some number of them is just $\ket{0}$ and some
+number is $\ket{1}$, and they forgot to put a label on them, so that person only knows how many of them
+is in one and in the other, then if they gift me one of the systems, they can only tell me which state
+that system is with a classical probability. Meaning, in that classical ensemble scenario, we know for sure
+that each system is in some definite state, but there is a statistical ignorance that we can encode with a
+density matrix. And that density matrix will actually be exactly the expression ~\eqref{eq:rho_b}. But
+interestingly, in our case with Alice and Bob, we know for a fact that the positron spin is not in some
+definite state, yet the density matrix is the same, so from the point of view of making measurements locally,
+a person not knowing the story behind how this state was prepared would not be able to infer whether the
+state was in some classical statistical ensemble or if it was due to an entanglement with some other spin
+somewhere else.
+
+\section{The Arguments}
+
+
 \end{document}
