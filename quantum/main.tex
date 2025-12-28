@@ -124,4 +124,84 @@ powers to prove to Alice that even though the collapse on the quantum state is i
 able to send information to Bob faster than the speed of light, and that she is better off forgetting Bob
 and enjoing the carbonara with him tonight.
 
+\section{The Math}
+
+The electron-positron system lives in a composite Hilbert space
+
+\[
+\mathcal{H}_{AB} = \mathcal{H}_A \otimes \mathcal{H}_B
+\]
+
+Its density matrix is:
+
+\[
+ \rho_{AB} = \sum_{i, j, k, l} \ket{i}_A\bra{j}_A \otimes \ket{k}_B\bra{l}_B =
+ \sum_{i, j, k, l} \ket{i}\bra{j} \otimes \ket{k}\bra{l}
+\]
+where $i, j \in \mathcal{X} $ and  $k, l \in \mathcal{Y} $, where $\mathcal{X}$ and $\mathcal{Y}$
+are the sets that index the states in the two Hilbert spaces. In our special case of the electron and
+positron spins we have
+
+\[
+ \mathcal{X} = \{0, 1\}
+\]
+
+\[
+ \mathcal{Y} = \{0, 1\}
+\]
+which means that the electron spin can be either in up or down state, and the same for the positron.
+For the sake of familiarizing ourselves with these objects let's look at how the particular density
+matrix in the case of Alice and Bob looks like, before proceeding with the proof for a more general
+case. We saw earlier the vector representing the entangled quantum state looks like this
+
+\[
+\ket{\psi}_{AB} = a\ket{01} + b\ket{10}
+\]
+
+For pure states, the density matrix can be expressed as an outer product of itself
+
+\begin{align}
+\rho_{AB}
+&= \ket{\psi}\bra{\psi} \\
+&= (a\ket{01} + b\ket{10})
+   (a^*\bra{01} + b^*\bra{10}) \\
+&= |a|^2 \ket{01}\bra{01}
+ + ab^* \ket{01}\bra{10}
+ + a^*b \ket{10}\bra{01}
+ + |b|^2 \ket{10}\bra{10}
+\label{eq:rho_ab}
+\end{align}
+
+But what can we do with this global description? In practice, we are often interested only in a
+subsystem, such as a single particle, rather than the full composite system. For example if Bob
+is going to make a measurement on the positron, he is only interested in the statistics of what
+can come out of the positron: basically just the stuff in the Hilbert space $\mathcal{H}_B$.
+He does not care about the electron that is not in his posession.
+To describe the subsystem alone, we introduce its reduced density matrix $\rho_{B}$. This object contains
+all information needed to compute the probabilities of measurement outcomes for that subsystem.
+The reduced density matrix is obtained from the global density matrix by taking the
+partial trace over the degrees of freedom of all other subsystems. So Bob is interested
+in the reduced density matrix of his positron's spin $\rho_{B}$
+
+\begin{equation}
+    \rho_{B} = \mathrm{Tr}_{A}(\rho_{AB}) = \sum_{i \in \mathcal{X}} \bra{i}_A\rho_{AB}\ket{i}_A
+\end{equation}
+
+We substitute the expression for $\rho_{AB}$ from ~\eqref{eq:rho_ab} and we get
+
+\begin{equation}
+    \rho_{B} = |a|^2 \ket{1}\bra{1} + |b|^2 \ket{0}\bra{0}
+\end{equation}
+
+Note: the following paragraph has some ontological problems, take it with a grain of salt, it will be revised.
+So Bob's positron can be in spin up state with probability $|a|^2$ and down state with
+probability $|b|^2$. An interesting observation to make is that this is a mixed
+state. Meaning, regarded in isolation on planet B, the positron is still in either  up or down
+state quantum mechanically, but it is still described by a density matrix that would look exactly
+the same if we actually simply did not know what the state is and had a purely statistical description
+that says that it is already in one of the states and here are the probabilities. However the distinction
+has to be made that quantum mechanically the spin is still either up or down, but since it is not locally
+in a superposition, but implicitly in a superposition with the electron on planet B, the reduced matrix
+description encodes in the sense that locally on planet B the measurements on the electron will behave
+as if it is statistically in either state.
 \end{document}
