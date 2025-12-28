@@ -211,6 +211,33 @@ a person not knowing the story behind how this state was prepared would not be a
 state was in some classical statistical ensemble or if it was due to an entanglement with some other spin
 somewhere else.
 
+\subsection{How do we manipulate a quantum state?}
+
+Quantum states are of course not static in time, so what makes a quantum state change?
+What is the mathematical description of state evolution?
+For closed quantum systems, all physically valid time evolutions can be represented
+by unitary transformations,
+
+\begin{equation}
+    \ket{\psi(t)} \mapsto U(t)\ket{\psi(t)}
+\end{equation}
+
+or, equivalently,
+
+\begin{equation}
+    \rho(t) \mapsto U(t)\rho(t) U^{\dagger}(t)
+\end{equation}
+
+where $U^{\dagger}$ denotes the adjoint (Hermitian conjugate) of $U$, and the unitary transformations
+are defined as follows
+
+\begin{equation}
+    U^{\dagger}U = UU^{\dagger} = \mathbb{I}
+\end{equation}
+
+Ok that is basically it, so far so good, we have, in theory, everything we need to attack the
+problem and help Matteo to save the night.
+
 \section{The Arguments}
 
 
