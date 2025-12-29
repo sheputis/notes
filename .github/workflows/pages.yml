@@ -30,23 +30,39 @@ jobs:
 
       - name: Prepare Pages site
         run: |
-          mkdir -p site
+          set -euo pipefail
           COMMIT=$(git rev-parse --short HEAD)
-          cp quantum/main.pdf site/main-$COMMIT.pdf
-          cat > site/index.html <<'HTML'
+
+          mkdir -p site
+
+          # Copy BOTH:
+          cp quantum/main.pdf "site/main-$COMMIT.pdf"
+          cp quantum/main.pdf "site/main.pdf"
+
+          # Create index.html at the ROOT of the site folder:
+          cat > site/index.html <<HTML
           <!doctype html>
           <html>
             <head>
               <meta charset="utf-8" />
               <meta name="viewport" content="width=device-width, initial-scale=1" />
-              <title>Quantum PDF</title>
+              <title>Quantum Notes</title>
               <style>
                 html, body { height: 100%; margin: 0; }
                 embed { width: 100%; height: 100%; }
+                .bar { position: fixed; top: 0; left: 0; right: 0; background: white; padding: 8px 12px; font-family: sans-serif; }
+                .viewer { position: fixed; top: 44px; left: 0; right: 0; bottom: 0; }
               </style>
             </head>
             <body>
-              <embed src="main-{{COMMIT}}.pdf" type="application/pdf" />
+              <div class="bar">
+                Latest build: <a href="main-$COMMIT.pdf">main-$COMMIT.pdf</a>
+                &nbsp;|&nbsp;
+                Stable link: <a href="main.pdf">main.pdf</a>
+              </div>
+              <div class="viewer">
+                <embed src="main-$COMMIT.pdf" type="application/pdf" />
+              </div>
             </body>
           </html>
           HTML
