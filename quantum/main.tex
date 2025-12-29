@@ -286,21 +286,42 @@ So the problem can be formulated as such:
 
 \section{The Proof}
 
-The proof ofc only proves the mathematical statements. How well it translates to the physical
-reality is a different question.
+It is worth stressing what this proof does and does not say. Formally, it is a statement about operators
+on tensor-product Hilbert spaces: a unitary acting on subsystem $A$ leaves the reduced state of subsystem
+$B$ unchanged. To turn this into a physical statement, one uses the standard quantum-mechanical postulate
+that the reduced density matrix contains all information about measurement outcomes accessible to an observer
+on $B$. Under this interpretation—which is strongly supported by experiment—the result means that local
+operations on $A$ cannot influence measurements performed on $B$.
 Also, the proof is valid for any arbitrary number of states, meaning $\mathcal{X}$ and $\mathcal{Y}$
 are free to be any set or subset of natural numbers
 
 \subsection{Reduced Density Matrix before transformation}
 
 \begin{align}
-  \rho_{B} &= \mathrm{Tr}_{A}(\rho_{AB}) = \sum_{i \in \mathcal{X}} \bra{i}_A\rho_{AB}\ket{i}_A \\
-           &= U_A \otimes \mathbb{I}_B (\sum_{i, j, k, l} \rho_{ijkl} \ket{i}\bra{j} \otimes \ket{k}\bra{l}) U_A^{\dagger} \otimes \mathbb{I}_B \\
+  \rho_{B} &= \mathrm{Tr}_{A}(\rho_{AB}) = \sum_{m \in \mathcal{X}} \bra{m}_A\rho_{AB}\ket{m}_A \\
+           &= \sum_{m} \bra{m}_A(\sum_{i, j, k, l} \rho_{ijkl} \ket{i}\bra{j} \otimes \ket{k}\bra{l}) \ket{m}_A \\
+           &= \sum_{m, i, j, k, l} \rho_{ijkl} \bra{m}\ket{i}\bra{j}\ket{m} \ket{k}\bra{l} \\
+\end{align}
+
+Since $\ket{i}$ are orthonormal basis vectors, the Kronecker delta function follows
+
+\begin{equation}
+  \bra{i}\ket{j} = \delta_{ij}
+\end{equation}
+
+Named after Kronecker, mostly known for bullying Cantor, the founder of set theory and the guy that
+discovered multiple types of infinities, into clinical depression \emoji{💀}. Now we substitute it into
+our expression.
+
+\begin{align}
+  \rho_{B} &= \sum_{m, i, j, k, l} \rho_{ijkl} \delta_{mi}\delta_{jm} \ket{k}\bra{l} \\
+           &= \sum_{m, k, l} \rho_{mmkl} \ket{k}\bra{l}
+\label{eq:rho_b_untransformed}
 \end{align}
 
 \subsection{Transformed Density Matrix}
 
-\subsection{Reduced Density Matrix after transformation}
+Now we apply a unitary transformation on the original density matrix.
 
 \begin{align}
   \rho_{AB}'
@@ -308,5 +329,71 @@ are free to be any set or subset of natural numbers
   &= U_A \otimes \mathbb{I}_B (\sum_{i, j, k, l} \rho_{ijkl} \ket{i}\bra{j} \otimes \ket{k}\bra{l}) U_A^{\dagger} \otimes \mathbb{I}_B \\
   &= \sum_{i, j, k, l} \rho_{ijkl} U_A\ket{i}\bra{j}U_A^{\dagger} \otimes \ket{k}\bra{l}
 \end{align}
+
+\subsection{Reduced Density Matrix after transformation}
+
+And finally we take the partial trace of $\rho_{AB}'$ over subsystem $A$ and cross our fingers for Matteo.
+
+\begin{align}
+  \rho_{B}' &= \mathrm{Tr}_{A}(\rho_{AB}') \\
+            &= \sum_{m} \bra{m}\rho_{AB}'\ket{m} \\
+            &= \sum_{m} \bra{m}(\sum_{i, j, k, l} \rho_{ijkl} U_A\ket{i}\bra{j}U_A^{\dagger} \otimes \ket{k}\bra{l})\ket{m} \\
+            &= \sum_{m, i, j, k, l} \rho_{ijkl} \bra{m}U_A\ket{i}\bra{j}U_A^{\dagger}\ket{m} \ket{k}\bra{l}
+\label{eq:rho_b_transformed}
+\end{align}
+
+Now let's stop here for a moment and before we proceed, let us find a relation for the components
+of the unitary matrices from its definition $U^{\dagger}U = \mathbb{I}$. This will allow us to substitute
+for it in the expression above.
+
+A transformation $U$ in $\ket{i}$ basis can be written as
+
+\begin{equation}
+  U = \sum_{i,j} \bra{i}U\ket{j}\ket{i}\bra{j}
+\end{equation}
+
+From that follows
+
+\begin{align}
+  U^{\dagger}U &= \sum_{i,j} \bra{i}U^{\dagger}\ket{j}\ket{i}\bra{j} \sum_{k,l} \bra{k}U\ket{l}\ket{k}\bra{l} \\
+               &= \sum_{i,j,k,l} \bra{i}U^{\dagger}\ket{j}\bra{k}U\ket{l}\ket{i}\bra{j}\ket{k}\bra{l} \\
+               &= \sum_{i,j,k,l} \bra{i}U^{\dagger}\ket{j}\bra{k}U\ket{l} \delta_{jk}\ket{i}\bra{l} \\
+               &= \sum_{i,m,l} \bra{i}U^{\dagger}\ket{m}\bra{m}U\ket{l} \ket{i}\bra{l}
+\end{align}
+
+Now this expression has to equal an identity matrix $U^{\dagger}U = \mathbb{I}$
+
+\begin{align}
+  \sum_{i,m,l} \bra{i}U^{\dagger}\ket{m}\bra{m}U\ket{l} \ket{i}\bra{l} = \delta_{il}\ket{i}\bra{l}
+\end{align}
+
+And from this follows
+
+\begin{align}
+  \sum_{m} \bra{i}U^{\dagger}\ket{m}\bra{m}U\ket{l} = \delta_{il}
+\end{align}
+
+Or, if we rename the indices to fit with our previous expressions, this is equivalent to
+
+\begin{align}
+  \sum_{m} \bra{m}U\ket{i} \bra{j}U^{\dagger}\ket{m} = \delta_{ij}
+\end{align}
+
+We now plug that back into ~\eqref{eq:rho_b_transformed} and we get
+
+\begin{align}
+  \rho_{B}' &= \sum_{m, i, j, k, l} \rho_{ijkl} \bra{m}U_A\ket{i}\bra{j}U_A^{\dagger}\ket{m} \ket{k}\bra{l} \\
+            &= \sum_{i, j, k, l} \rho_{ijkl} \delta_{ij} \ket{k}\bra{l} \\
+            &= \sum_{m, k, l} \rho_{mmkl} \ket{k}\bra{l}
+\end{align}
+
+And this is exactly the expression ~\eqref{eq:rho_b_untransformed}, hence
+
+\begin{equation}
+  \rho_{B}' = \rho_{B}
+\end{equation}
+
+And hence a unitary transformation on subsystem $A$ does not change the reduced density matrix of
+the subsystem $B$. Hence that means that Alice has no way of sending a letter of admiration to Bob!
 
 \end{document}
