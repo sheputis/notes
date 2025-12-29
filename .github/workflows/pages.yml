@@ -31,7 +31,8 @@ jobs:
       - name: Prepare Pages site
         run: |
           mkdir -p site
-          cp quantum/main.pdf site/main.pdf
+          COMMIT=$(git rev-parse --short HEAD)
+          cp quantum/main.pdf site/main-$COMMIT.pdf
           cat > site/index.html <<'HTML'
           <!doctype html>
           <html>
@@ -45,7 +46,7 @@ jobs:
               </style>
             </head>
             <body>
-              <embed src="main.pdf" type="application/pdf" />
+              <embed src="main-{{COMMIT}}.pdf" type="application/pdf" />
             </body>
           </html>
           HTML
