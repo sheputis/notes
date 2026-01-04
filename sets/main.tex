@@ -1,0 +1,122 @@
+\documentclass[11pt,a4paper]{article}
+
+% Modern font handling (LuaLaTeX)
+\usepackage{fontspec}
+\setmainfont{Latin Modern Roman}
+
+\newfontfamily\EmojiFont{Noto Emoji} % monochrome (most reliable in PDFs)
+\newcommand{\emoji}[1]{{\EmojiFont #1}}
+
+% Typography
+\usepackage{microtype}
+
+% Math
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+
+% Physics helpers
+\usepackage{physics}
+
+% Links
+\usepackage{hyperref}
+
+\usepackage{graphicx}
+
+\newcommand{\note}[1]{%
+  \par\medskip
+  \noindent\textbf{Note:} #1
+  \par\medskip
+}
+
+\setlength{\parindent}{0pt}
+
+\title{Set Theory Notes}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\tableofcontents
+
+\note{
+...
+}
+
+\section{Thoughts}
+
+\section{Proof that some infinities are bigger than others}
+
+\subsection{Power Set}
+
+An important kind of set is a power set. If we have a set $X$, then its power
+set $\mathcal{P}(X)$ is a set containing all subsets of $X$, including the empty set and the
+entire set $X$.
+
+\[
+  \mathcal{P}(X) = \{\, Y \mid Y \subseteq X \, \}
+\]
+
+\subsection{Cantor's Theorem: $\lvert X\rvert < \lvert\mathcal{P}(X)\rvert$}
+
+Suppose towards a contradiction that there is a 'one to one' map (a bijection)
+
+\[
+  f: X \to \mathcal{P}(X)
+\]
+
+As per (insert a
+reference to the proof that a one to one mapping implies that the sets are of the same size), this
+would imply that the two sets are of the same size.
+
+The idea is to show that there exists a set that breaks the initial premise that we assumed to
+be true: that there exists such a bijection $f$.
+
+Before doing so we take notice of the fact that the mapping $f$ can happen in two ways:
+
+\begin{itemize}
+  \item $x \in f(x)$
+  \item $x \notin f(x)$
+\end{itemize}
+
+\subsubsection{Detour To No Contradiction}
+
+Actually the second property is the interesting one, but for the sake of exploring, let us look at the first
+property and construct a set of all elements that satisfy that property
+
+\[
+\mathcal{B} = \{\, x \in X \mid x \in f(x) \,\}
+\]
+
+So now we want to find a $x_i$ such that $f(x_i) = \mathcal{B}$. There are two possibilities, either
+$x_i \in \mathcal{B}$ or $x_i \notin \mathcal{B}$.
+
+\begin{itemize}
+  \item If $x_i \in \mathcal{B}$, then it fits with the definition of $\mathcal{B}$, because
+        it is defined as a set with all elements that point to itself.
+\end{itemize}
+
+\[
+\mathcal{D} = \{\, x \in X \mid x \notin f(x) \,\}
+\]
+
+\subsubsection{The Property Leading To Contradiction}
+
+The question is, can we find a $x_i$ such that $f(x_i) = \mathcal{D}$
+There are two possibilities for , either $\mathcal{D}$ is indexed by an $x_i$
+that is inside $D$ or outside.
+
+\begin{itemize}
+  \item If $x_i \in \mathcal{D}$, then, by definition, $x_i$ indexes a set that it itself is a part of.
+        That is a contratiction, because $\mathcal{D}$ is defined as a set of elements that point to A
+        set that does not contain itself.
+  \item The other option is that $x_i \notin \mathcal{D}$. If that is the case, then by definition of
+        $\mathcal{D}$, $x_i$ must be a member of $\mathcal{D}$, which is a contradiction.
+\end{itemize}
+
+But wait, another assumption was that sets do have sizes... i need to prove that too...
+Because if the above proves that they are not the same size, and we also show that X is not smaller than P(X),
+then the only possibility left that P(X) is greater than X. However the main assumption here again is that the
+sets do have sizes that can be compared. Finite set sizes can be compared? Ok, but can infinitely big sets be
+compared?
+\end{document}
