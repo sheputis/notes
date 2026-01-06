@@ -45,7 +45,55 @@
 
 \section{Thoughts}
 
-\section{Proof that some infinities are bigger than others}
+\section{Definitions}
+
+\subsection{Injective Functions}
+
+A function $f: X \to Y$ is injective if
+
+\[
+  \forall a, b \in X: a \neq b \implies f(a) \neq f(b)
+\]
+
+or the contraposition
+
+\[
+  \forall a, b \in X: f(a) = f(b) \implies a = b
+\]
+
+\subsection{Surjective Functions}
+
+A function $f: X\to Y$ is surjective if
+
+\[
+  \forall b \in Y,\; \exists a \in X : f(a) = b
+\]
+
+\subsection{Bijective Functions}
+
+A function $f: X \to Y$ is bijective if it is both injective and surjective.
+In this case, there exists an inverse function $f^{-1} : Y \to X$.
+
+\subsection{Cardinality}
+
+Cardinality answers the question of whether two sets $X$ and $Y$ are of the same size.
+If there exists an injective mapping $f: X \to Y$, then
+
+\begin{equation}
+   \abs{X} \leq \abs{Y}
+\end{equation}
+
+If there exists a surjective mapping $f: X \to Y$, then
+
+\begin{equation}
+   \abs{X} \geq \abs{Y}
+\end{equation}
+
+This then implies that a bijective map $f: X \to Y$ implies
+
+\begin{equation}
+   \abs{X} = \abs{Y}
+\end{equation}
 
 \subsection{Power Set}
 
@@ -56,6 +104,9 @@ entire set $X$.
 \[
   \mathcal{P}(X) = \{\, Y \mid Y \subseteq X \, \}
 \]
+
+\section{Proof that some infinities are bigger than others}
+
 
 \subsection{Cantor's Theorem: $\lvert X\rvert < \lvert\mathcal{P}(X)\rvert$}
 
@@ -74,45 +125,59 @@ be true: that there exists such a bijection $f$.
 
 Before doing so we take notice of the fact that the mapping $f$ can happen in two ways:
 
-\begin{itemize}
-  \item $x \in f(x)$
-  \item $x \notin f(x)$
-\end{itemize}
+\begin{equation}
+    x \in f(x)
+    \label{eq:uninteresting_property}
+\end{equation}
+
+\begin{equation}
+    x \notin f(x)
+    \label{eq:interesting_property}
+\end{equation}
 
 \subsubsection{Detour To No Contradiction}
 
-Actually the second property is the interesting one, but for the sake of exploring, let us look at the first
-property and construct a set of all elements that satisfy that property
+Actually the second property ~\eqref{eq:interesting_property} is the interesting one, but for the sake of exploring,
+let us look at the first property ~\eqref{eq:uninteresting_property} and construct a set of all elements that satisfy that property
 
 \[
 \mathcal{B} = \{\, x \in X \mid x \in f(x) \,\}
 \]
 
-So now we want to find a $x_i$ such that $f(x_i) = \mathcal{B}$. There are two possibilities, either
+So now we want to find an $x_i$ such that $f(x_i) = \mathcal{B}$. There are two possibilities, either
 $x_i \in \mathcal{B}$ or $x_i \notin \mathcal{B}$.
 
 \begin{itemize}
-  \item If $x_i \in \mathcal{B}$, then it fits with the definition of $\mathcal{B}$, because
-        it is defined as a set with all elements that point to itself.
+  \item If $x_i \in \mathcal{B}$, then there is no contradiction because the constraint in the definition
+        of $\mathcal{B}$ allows it.
+  \item If $x_i \notin \mathcal{B}$, then there is also no contradiction because since $x_i$ is now not
+        pointing to a set where it itself is an element, then due to the definition of $\mathcal{B}$, it
+        is automatically also not part of it.
 \end{itemize}
+
+
+\subsubsection{The Property Leading To Contradiction}
+
+Now back to the interesting property ~\eqref{eq:interesting_property}: let's construct a set that satisfies it.
+A set of all $x$ that do not map to an element of $\mathcal{P}(X)$ that contains itself.
 
 \[
 \mathcal{D} = \{\, x \in X \mid x \notin f(x) \,\}
 \]
 
-\subsubsection{The Property Leading To Contradiction}
 
-The question is, can we find a $x_i$ such that $f(x_i) = \mathcal{D}$
-There are two possibilities for , either $\mathcal{D}$ is indexed by an $x_i$
-that is inside $D$ or outside.
+The question is, can we find an $x_i$ such that $f(x_i) = \mathcal{D}$
+There are two possibilities for it, either $x_i \in \mathcal{D}$ or $x_i \notin \mathcal{D}$.
 
 \begin{itemize}
   \item If $x_i \in \mathcal{D}$, then, by definition, $x_i$ indexes a set that it itself is a part of.
-        That is a contratiction, because $\mathcal{D}$ is defined as a set of elements that point to A
+        That is a contratiction, because $\mathcal{D}$ is defined as a set of elements that point to a
         set that does not contain itself.
   \item The other option is that $x_i \notin \mathcal{D}$. If that is the case, then by definition of
         $\mathcal{D}$, $x_i$ must be a member of $\mathcal{D}$, which is a contradiction.
 \end{itemize}
+
+\subsubsection{}
 
 But wait, another assumption was that sets do have sizes... i need to prove that too...
 Because if the above proves that they are not the same size, and we also show that X is not smaller than P(X),
