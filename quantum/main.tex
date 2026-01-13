@@ -53,78 +53,40 @@ unfamiliar, but its nothing fancy. It is all just matrices and vectors.
            opposite directions to planet A and B respectively}
 \end{figure}
 
-Look I added an emoji \emoji{😄}. Anyways, let's say we have an entangled pair of particles,
-for example an electron and a positron whose spins are entangled. Alice receives the electron
-on planet A and Bob receives the positron on planet B. If either 'observe' the state of the spin
-of their particle, the other particle will immediately also collapse into some state as prescribed
-by the entangled quantum state. For example, if the overall state was
+Consider an entangled pair of particles, for instance an electron and a positron with their
+spins entangled. Alice receives the electron on planet A and Bob receives the positron on
+planet B. When either measures the spin of their particle, the joint state collapses* so that
+the outcome is correlated.
+
+For example, suppose the two-particle state is
 
 \[
 \ket{\psi} = a\ket{01} + b\ket{10}
 \]
 
-(Let $0$ represent the spin down state and $1$ the up state)
+where $\ket{0}$ denotes spin down and $\ket{1}$ denotes spin up. The only possible outcomes are:
 
-we see that there are only two possible states:
 \begin{itemize}
-  \item Either A is in spin down and B is in spin up with probability $\abs{a}^2$
-  \item Or A is in spin up and B is in spin down with probability $\abs{b}^2$
+\item Alice measures $\ket{0}$ and Bob $\ket{1}$ with probability $|a|^2$;
+\item Alice measures $\ket{1}$ and Bob $\ket{0}$ with probability $|b|^2$.
 \end{itemize}
 
-All well and good so far, but here is a catch. Bob does not know it, but Alice has a crush
-on him. Alice is finally ready to invite Bob on a date. There is only one problem, apart
-from the fact that they live on different planets: Clara also likes Bob, and she is currently
-in the same city as Bob. She is also about to drive to Bob to proclaim her admiration for his
-quantum knowledge. Alice knows this for some reason and is devastated. Planet A is 10 lightyears
-away. If she will send a Whatsapp message to Bob now, by the time Bob reads that Alice thinks
-his quantum logic is hot, it will be 10 years later and he will already have 5 kids with Clara.
+So far this seems straightforward: if Alice measures her particle and obtains a definite spin,
+Bob’s particle instantly assumes the opposite spin, regardless of the distance between them.
 
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=0.6\textwidth]{figures/clara_admires_bob.png}
-  \caption{Clara admires Bob for his quantum knowldege and Bob likes quantum knowldege}
-\end{figure}
+Now imagine the following scenario: Alice wants to send a message to Bob, but Bob is located 10
+light-years away on planet B. Alice wonders whether she can exploit the instantaneous'' collapse
+of the entangled state to communicate faster than light. Specifically, she considers measuring
+her particle in one way to represent a logic 1'' and measuring it in another way to represent
+a logic ``0'', hoping that Bob will detect the difference immediately.
 
-Its late at night and Matteo has made sure the fire is heating the cabin really good. He is expecting
-Alice to come through the door any minute now. He had finally managed to ask her out. And he is
-not wasting any time: if he did not take this seriously he would take her to the movies or some simple
-thing like that. But with Alice he wants to hit the home run right away. And a cabin trip alla Matteo
-is a nuclear weapon in the romantic world. An unrestistable smell of spagetthi carbonara has taken over
-the cabin. Matteo' special secret is to not use the timer for the spagetthi. He has to feeeel the spagetthi
-and only strike it out of the water when he feels deep in his soul that the time is high, just like he
-will do with Alice later that night. While rehearsing his romantic lines in front of an old mirror, he
-could not tell if the twinkles in his eyes actually were a reflection of the hundred candles he lit up
-everywhere or if he is just that excited.
+The idea seems promising at first: Alice performs a measurement, the quantum state collapses
+instantaneously, and Bob’s particle is affected immediately. However, as we will show, despite
+the correlations being instantaneous, Alice cannot use this phenomenon to transmit any controllable
+information to Bob faster than the speed of light. Bob’s local measurement outcomes remain
+fundamentally random, and the correlations can only be revealed after classical communication.
 
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=0.6\textwidth]{figures/matteo_anticipating.png}
-  \caption{Golly gee can't wait!}
-\end{figure}
-
-Matteo was just about to finish pointing his index fingers towards the mirror anyways as the door
-opened with a sudden crackle followed by a gust of cold winter air finding its way into the room.
-Alice has finally arrived, but to Matteo's horror, she was crying! The carbonara was already long
-cold and the last more stubborn candles were holding on for dear life in an attempt to prolong the night.
-So was Matteo's mood as he was listening to Alice going on and on about Bob and sobbing. Only if she
-could somehow send Bob a message before Clara gets to him and charms him.
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=0.6\textwidth]{figures/matteo_disappointed.png}
-  \caption{Oh Bob, my admiration for you is faster than light}
-\end{figure}
-
-She is frantically telling Matteo that she knows quite a bit of quantum physics because her full time
-job is appearing in quantum thought experiments. She tells him she has recently received an electron from
-a planet far far away (actually, a whole bunch of them). All she needs to do is
-to observe its spin state and bang: the positron instantly assumes the opposite state. That is instant!
-Surely she can somehow make use of this fact to send a message to Bob before its too late! That is not, however,
-what Matteo wanted to hear tonight, the situation seems hopeless... the night is ruined. Or is it? Matteo
-has one last trick up his sleeve. As a professor in Category Theory, he is going to use his mathematical
-powers to prove to Alice that even though the collapse on the quantum state is instant, she will not be
-able to send information to Bob faster than the speed of light, and that she is better off forgetting Bob
-and enjoing the carbonara with him tonight.
+As a result, the entanglement does not enable superluminal communication, and relativity remains intact.
 
 \section{The Math}
 
@@ -241,7 +203,7 @@ are defined as follows
 \end{equation}
 
 Ok that is basically it, so far so good, we have, in theory, everything we need to attack the
-problem and help Matteo to save the night.
+problem.
 
 \section{The Arguments}
 
@@ -283,7 +245,7 @@ So the problem can be formulated as such:
   \item
     If $\rho_{B} = \rho_{B}'$, then the unitary transformation has no effect on the reduced
     density matrix $\rho_{B}$, meaning that Alice can do nothing to affect the measurement
-    probabilities for Bob, which is a sad day for Bob, but what a great night for Matteo.
+    probabilities for Bob.
 \end{itemize}
 
 \section{The Proof}
@@ -334,7 +296,7 @@ Now we apply a unitary transformation on the original density matrix.
 
 \subsection{Reduced Density Matrix after transformation}
 
-And finally we take the partial trace of $\rho_{AB}'$ over subsystem $A$ and cross our fingers for Matteo.
+And finally we take the partial trace of $\rho_{AB}'$ over subsystem $A$.
 
 \begin{align}
   \rho_{B}' &= \mathrm{Tr}_{A}(\rho_{AB}') \\
@@ -396,12 +358,6 @@ And this is exactly the expression ~\eqref{eq:rho_b_untransformed}, hence
 \end{equation}
 
 And hence a unitary transformation on subsystem $A$ does not change the reduced density matrix of
-the subsystem $B$. Hence that means that Alice has no way of sending a letter of admiration to Bob!
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=0.6\textwidth]{figures/matteo_proved.png}
-  \caption{Irrefutable proof means the night is saved}
-\end{figure}
+the subsystem $B$. Hence that means that Alice has no way of sending a letter to Bob!
 
 \end{document}
