@@ -47,6 +47,76 @@
 
 \section{Definitions}
 
+\subsection{Axiom}
+
+An axiom is a premise assumed to be true, that itself requires no internal proof.
+It is then used to build theorems, that are proved using logical statements based
+on axioms. The difference between a theorem and an axiom is that they are both
+statements about a mathematica system, but theorems are logical consequences
+of the axioms, proven or disproven, while axioms need no proof as per definition.
+
+\subsection{Definition}
+
+A definition is a statement that does not add a restriction on a theory, it
+introduces a concept and assigns a label to it. It is just a description, it needs
+no proof. If it would need proof, it would be a theorem.
+
+\section{Set Theory}
+
+\subsection{Mapping/Function}
+
+A Mapping or a Function (synonyms) is generally denoted as $f: X \to Y$. It takes an
+input point from the domain $X$ and maps it onto its codomain $Y$. The set of points
+that it maps onto inside of $Y$ is called an image of $f$.
+
+Before defining what a mapping is, we need to define a few other things first:
+
+\subsubsection{Ordered Pair}
+
+\begin{equation}
+  (a, b) \coloneqq \{\{a\}, \{a, b\}\}
+\end{equation}
+
+This works because $(a, b) = (a, b)$ and $(a, b) \not = (b, a)$.
+
+\subsubsection{Cartesian Product}
+
+A cartesian product is defined as
+
+\begin{equation}
+  X \cross Y \coloneq \{ (x,y): x \in X \land y \in Y \}
+\end{equation}
+
+\subsubsection{Map is a set}
+
+A map/function is defined as a subset of a cartesian product between two
+sets with two additional criterias.
+
+\begin{equation}
+  f \text{is a set} f \subseteq X \times Y \text{satisfying properties} T \text{and} Q
+\end{equation},
+where the criterias are
+\begin{itemize}
+  \item `Totality`
+        \begin{equation}
+          T: \forall x \in X \exists y \in Y, (x, y) \in f
+        \end{equation}
+        This means that the entire domain $X$ is mapped to $Y$, there is not a single point
+        in $X$ that does not get mapped onto the codomain $Y$.
+  \item `Uniqueness`
+        \begin{equation}
+          U: \forall x \in X \forall y_1, y_2 \in Y, ((x, y_1) \in f \land (x, y_2) \in f) \implies y_1 = y_2
+        \end{equation}
+        or, equivalently
+        \begin{equation}
+          U: \forall (a,b), (c,d) \in f, (b \not = d) \implies (a \not = b)
+        \end{equation}
+
+        This means that for all points in $X$ there exists only a single point in $Y$ that
+        it maps to. It can not map to two different points at the same time.
+\end{itemize}
+for such an $f$, there is an $x \in X$ and its unique mapping in $y \in Y$ is denoted by $f(x) = y$
+
 \subsection{Injective Functions}
 
 A function $f: X \to Y$ is injective if
@@ -76,18 +146,182 @@ In this case, there exists an inverse function $f^{-1} : Y \to X$.
 
 \subsection{Cardinality}
 
+Cardinality is a generalized notion of size for sets. It is defined as an equivalence
+relation between sets. All sets between which a bijection exists form an equivalence
+class. Each such equivalence class is called a Cardinality.
+
+\begin{equation}
+  \abs{X} = \abs{Y} \iff \exists \text{bijection} f: X \to Y
+\end{equation}
+
+\subsection{$\abs{X} \leq \abs{Y}$}
+
+Now we need to define the notion of what it means for one set to be smaller
+or equal than another. The symbol $\leq$ does not yet carry meaning in the
+context of cardinalities; we must define it.
+
+\begin{equation}
+  \abs{X} \leq \abs{Y} \iff \exists \text{injection} f: X \to Y
+\end{equation}
+
+\subsection{$\abs{X} \geq \abs{Y}$}
+
+Again, just because we defined $\leq$ does not mean we automatically
+get $\geq$. We also need to define it. We use a symmetry argument
+
+\begin{equation}
+  \abs{X} \geq \abs{Y} \iff \abs{Y} \leq \abs{X}
+\end{equation}
+
+Which, by unwinding the definitions, means that there must be an injective
+mapping $f: Y \to X$.
+
+\subsection{$\abs{X} \leq \abs{Y} \land \abs{X} \geq \abs{Y} \iff \abs{X} = \abs{Y}$}
+
+Now this is not a definition, this is a theorem that we need to prove.
+
+We know, from the definition of a cardinality, that $\abs{X} = \abs{Y}$ is defined
+by an existance of an injection and a surjection. The left side of the $\land$ is
+already prescribing an injection. Logically, that means that the right side of
+the $\land$ must necessarily be equivalent to a surjection. Because if it was
+not, then the theorem would be wrong. That reduces to the following:
+we must show that $\abs{X} \geq \abs{Y}$, which is defined by an existance
+of an injection $f: Y \to X$, implies the existance of a surjection $s: X \to Y$.
+In other words, prove a lemma
+\begin{equation}
+  \text{injection} \, f: Y \to X \implies \text{surjection} \, s: X \to Y
+\end{equation}
+
+If $f: Y \to X$, then we know that the image of $f$, which we call $F$, has
+this property $F \subseteq X$. We also know that there is an inverse mapping
+$f^{-1}: F \to Y$. The entire set Y is covered by $f^{-1}$, because $f$ is injective.
+Now we need to construct a mapping
+
+\begin{equation}
+  p: X \to Y =
+  \begin{cases}
+    f^{-1}(x) & \, \text{if} x \in F, \\
+    k(x)      & \, \text{if} x \in X \land x \notin F
+  \end{cases}
+\end{equation}
+
+We need to prove that $p$ is a surjective mapping. In other words, two criterea
+must be satisfied:
+
+\begin{itemize}
+  \item $p$ needs to satisfy the basic criterea for mappings: 'totality'
+        that is, $\forall x \in X \exists f(x) \in Y$
+  \item $p$ needs to satisfy the basic criterea for mappings: 'uniqueness'
+        that is, $\forall x \in X \exists f(x) \in Y$
+  \item $p$ needs to satisfy the specific criterea of 'surjectivity'
+        $\forall y \in Y \, \exists x \in X : y = f(x)$.
+\end{itemize}
+
+Now $p$ depends on the existance of $f^{-1}$ and $k$. $f^{-1}$ exists, as we
+showed, on the image $F$ of $f$, and we know that $f$ exists, because it is
+the basic assumption of the theorem that it holds at all when such an $f$
+exists. Ok, now what about $k$?
+
+\note{
+
+
+}
+
+If it exists, then basically $p$ satisfies
+the surjective function property, which is that the entire codomain $Y$ is
+covered by $p$, which it is, because $f$ is a mapping $f: y \to x$ and one
+of its criterea is $totality$: that its entire domain maps to the codomain.
+So naturally its inverse will map to the entire $Y$. But why is the fact
+that $f$ is injective important? Well if $f$ was not injective, then there
+would be no $f^{-1}$ on any $F \subseteq X$. And if there is no such $f^{-1}$,
+well the problem is that it means that there is basically no legal/allowed/existing
+map from a subset of $X$ to the entire $Y$. Hmm i don't really understand though
+what this would imply or how such sets would look like, why would there ever be any
+such two sets X and Y, that would not allow for a mapping like that... hmm maybe
+if $X$ is natural numbers and $Y$ is the real numbers? then there is no such
+function/map possible at all? ye that does sound interesting, maybe there is
+something to this thought? That would mean that there is no injective
+function from the real numbers to the natural numbers? well that does kind
+of make sense i guess. Anyhow, now that we showed that there must necessarily
+be an injection $f$, so that there can be a well behaved $f^{-1}$. This makes
+sense the other way around too, an $f$ from natural numbers onto the real numbers
+can be injective, and it means that there is some $f^{-1}$ from some subset of
+real numbers onto the entire natural numbers. Anyhow the fact that we now
+hace a $f^{-1}$ in $p$ garuantees that $p$ is a surjection, if we did not
+have a $f^{-1}$, then we could not rely on $k$ making sure that $p$ is surjective,
+because we dont know anything about $k$, and it promises us nothing. Ok but what is
+$k$? It is a mapping that basically just maps the rest of the points in $X$ that
+are not in $F$. It is a sort of a 'filler' function that allows $p$ to cover the
+entire domain. Having $k$ just makes sure that $p$ abides by the 'totality' criteria.
+And since $k$ inevitably has to map to $Y$, it means there can be multiple points in
+$X$ that map to a single point in $Y$, but that is still within the definition of
+surjection, so $p$ is then still surjective. But now let's adress the elephant in the
+room. What is this arbitrary $k$? How do we know it exists? I just assumed that
+if the subset of $X$ that exludes $F$ is non empty, then obviously there must be
+some $k$ that maps that subset to $Y$, even if its just one point. Why would i not
+assume something like this? Is this where the axiom of choice comes in? I've
+only heard about it but i have no idea how it is formulated, or whether it is even
+needed here. Maybe i can just trivially assume what i did about k?
+
+\subsection{Notes on Cardinality/Ordinality}
 Cardinality answers the question of whether two sets $X$ and $Y$ are of the same size.
+It is a generalized notion of size for a set. It is defined two more fundamental
+definitions: an injective mapping means one set is bigger or equal than the other:
+meaning one has bigger or equal Cardinality than the other.
+and a surjective mapping means one set is smaller or equal than the other meaning one
+has smaller or equal cardinality than the other. Now
+if both are the case at the same time, then the two sets inevitably have an equal Cardinality.
+There is litterally nothing else to this definition, it specifically defines a notion
+of size based on comparisons with surjective and injective (and what follows 'bijective')
+maps -> which means that the notion of size is purely comparative, there is no absolute
+size implied by this definition alone.
+
+Now later on one might then ask, ok but buddy boy, in the case of finite sets, i want to
+know the exact size of a set, and i want a number for it. How does the Cardinality help
+me? Well Cardinality alone does not help you at all, we need another definition to help
+us count the set elements, and hence the absolute size of a set. That is done by Defining
+'ordinal numbers'. We can construct such numbers as sets, and if we have the notion of
+a size for such ordinal numbers (will get to that later), and then if we have a bijective
+mapping to some othe set $X$, then we know that some other set $X$ has the same Cardinality
+as this ordinal number, and the ordinal number has a known size which is an integer for finite
+sets, and hence we can claim that $X$ also has that same integer size. <-- this is basically
+how this the special case of counting finite sets derives from the combination of Cardinality
+and Ordinal numbers.
+
+Now the question is, how are the Ordinal Numbers defined. John Von Neumann defined ordinals
+with a recursive relation $ \alpha = \{ \beta \mid \beta < \alpha  \}$, and a starting
+element $\alpha_0 = \Phi$, the empty set. Then we simply define the empty set as representing
+a natural number $0$ and we have the concept of counting by simply following the recursive
+relation where $1$ is $\alpha_1 = {\phi}$ and $2$ is $\alpha_2 = { \alpha_0, \alpha_1 } = {\Phi, {\Phi}}$
+and so on. And we now see that there is an order through the recursive relation that allows the 'counting',
+and by counting we mean adding 'one new element' to a set, so the previous set is smaller by the next by
+1 element. End the empty set is defined then explicitly to be of size 0 because it has no elements, then
+naturally due to the recursive relation the next one will be 0+1, hence 1, and then the next one 1 + 1 = 2
+and so on. Now all we need to do is to find bijective mappings between ordinal numbers and other finite
+sets and voila, since they have the same cardinality, we know they have the same size, and since we know
+the size of a finite ordinal explicitly, well then we now also now explicitly the size of the other set
+which can be mapped to with a bijection from the ordinal number.
+
+However if we let the ordinal go to infinity, we no longer have an absoute size because infinity does not
+have a 'last element'.
+
+\subsubsection{$\abs{X} \leq \abs{Y}$}
+
 If there exists an injective mapping $f: X \to Y$, then
 
 \begin{equation}
    \abs{X} \leq \abs{Y}
 \end{equation}
 
+\subsubsection{$\abs{X} \geq \abs{Y}$}
+
 If there exists a surjective mapping $f: X \to Y$, then
 
 \begin{equation}
    \abs{X} \geq \abs{Y}
 \end{equation}
+
+\subsubsection{$\abs{X} = \abs{Y}$}
 
 This then implies that a bijective map $f: X \to Y$ implies
 
